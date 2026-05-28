@@ -110,27 +110,54 @@ of those services:
 - [Ko-fi Privacy Policy](https://more.ko-fi.com/privacy)
 - [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement)
 
-### 4. Crash reports — Sentry (opt-out)
+### 4. Crash reports and in-app feedback — Sentry (opt-out)
 
-If the app encounters an unhandled error (a "crash"), it
-sends a report to [Sentry](https://sentry.io) so I can see
-that something broke and fix it. This is **on by default**
-but can be turned off any time under **Settings → About &
-Legal → Send crash reports**.
+The app sends two kinds of data to [Sentry](https://sentry.io),
+both gated by a single toggle:
 
-- **Sent**: the stack trace and error message, app version,
-  Android version, device model, locale, and the route
-  (screen) where the error occurred.
+**Automatic crash reports.** If the app encounters an unhandled
+error (a "crash"), it sends a report so I can see that something
+broke and fix it.
+
+- **Sent**: stack trace, error message, app version, Android
+  version, device model, locale, and the route (screen) where
+  the error occurred.
 - **Not sent**: meal text, food names, weights, body
-  measurements, sleep data, step counts, photos, profile
-  info, API keys, or anything else from your local data.
-  The SDK is configured with `sendDefaultPii: false` and
-  user-input breadcrumbs are dropped before transmission.
-- **Receiver**: Sentry. Subject to [Sentry's Privacy Policy](https://sentry.io/privacy/).
-- **How to disable**: Settings → About & Legal → toggle
-  "Send crash reports" off. The setting takes effect
-  immediately — no app restart required, no further data
-  leaves the device.
+  measurements, sleep data, step counts, photos, profile info,
+  API keys, or anything else from your local data. The SDK is
+  configured with `sendDefaultPii: false` and user-input
+  breadcrumbs are dropped before transmission.
+
+**Voluntary feedback.** Settings → Feedback → "Open in-app
+feedback form" opens a form for sending feedback directly to
+me. Submissions go to the same Sentry project as crash reports.
+
+- **Sent (only when you explicitly submit the form)**: your
+  name, your email address, the free-text message you write,
+  and the same environment metadata as a crash report (app
+  version, Android version, device model, route).
+- **Not sent**: screenshots. The in-app screen-capture option
+  for feedback is disabled because your screens can contain
+  weights, body measurements, and other private health data.
+- The name and email fields exist so I can reply to you about
+  whatever you reported. The form requires both — leave them
+  blank and the form won't submit.
+
+**Receiver for both**: Sentry. Subject to [Sentry's Privacy Policy](https://sentry.io/privacy/).
+
+**How to disable both**: Settings → About & Legal → toggle
+"Send crash reports" off. This single toggle gates both
+automatic crash reports AND the in-app feedback form (when
+off, the feedback button is hidden, since submissions would
+flow through the same Sentry channel). The setting takes
+effect immediately — no app restart required, no further
+data leaves the device.
+
+The two email-based feedback buttons (Settings → Feedback →
+"Report a bug" / "Suggest a feature") are always available
+regardless of this toggle. Those open your phone's mail app
+with a pre-filled template addressed to the developer; nothing
+touches Sentry.
 
 ---
 
