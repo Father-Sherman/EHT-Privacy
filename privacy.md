@@ -7,7 +7,7 @@ permalink: /privacy/
 # E-HT Weight Loss — Privacy Policy
 
 **Effective date:** May 27, 2026
-**Last updated:** May 27, 2026
+**Last updated:** May 29, 2026
 
 This document describes how the E-HT Weight Loss Android app
 ("the app") handles your data. It is written in plain English
@@ -163,18 +163,33 @@ touches Sentry.
 
 ## Health Connect
 
-If you enable the optional **Sleep shield** feature, the app
-requests **read-only** access to two Health Connect record types:
+The app can optionally read two record types from Health Connect.
+Each is **read-only**, requested separately, and entirely optional —
+the app works without either:
 
-- **Steps** — used to display your daily step count and compute
-  expended calories.
-- **SleepSession** — used to display your nightly sleep duration
-  and warn you when sleep is short during a calorie deficit.
+- **Steps** — granted from **Settings → Permissions → Health
+  Connect · Steps**. Used to display your daily step count, compute
+  your expended calories, and detect drops in your activity over
+  time. When granted, Health Connect (which aggregates steps from
+  Samsung Health, wearables, and other fitness apps) becomes the
+  step source in preference to your phone's built-in sensor.
+- **Sleep (SleepSession)** — requested when you enable the optional
+  **Sleep shield** feature. Used to display your nightly sleep
+  duration and warn you when sleep is short during a calorie
+  deficit.
 
-Health Connect data is read directly from the Health Connect app
-on your phone. The app does **not** send Health Connect data over
-the network. You can revoke the app's Health Connect permissions
-at any time via the Health Connect app on your phone.
+Health Connect data is read directly from Health Connect on your
+phone and used only on-device. The app **never** sends Health
+Connect data over the network, never stores it anywhere off your
+phone, and never shares it with the developer or any third party.
+
+Health Connect data the app has copied into its local database
+(your step and sleep history) is deleted when you uninstall the
+app, the same as all other local data. You can revoke either
+Health Connect permission at any time through the Health Connect
+section of your phone's settings; revoking simply stops new reads
+and the affected feature falls back to its non-Health-Connect
+behavior (phone step sensor; motion-inferred sleep).
 
 ---
 
@@ -236,10 +251,10 @@ data, uninstall the app from that device to remove all data.
   re-shows the consent screen the next time you tap the
   microphone. To stop sending data to Gemini entirely, simply
   avoid using voice and text meal logging.
-- **Opt out of network features** — Voice meal logging, text
-  meal logging, USDA food lookups, Health Connect sync, and
-  notifications are all individually optional. The app remains
-  functional with all of them disabled.
+- **Opt out of optional features** — Voice meal logging, text
+  meal logging, USDA food lookups, Health Connect reads (steps
+  and sleep), and notifications are all individually optional.
+  The app remains functional with all of them disabled.
 
 ---
 
