@@ -7,7 +7,7 @@ permalink: /privacy/
 # E-HT Weight Loss — Privacy Policy
 
 **Effective date:** May 27, 2026
-**Last updated:** June 3, 2026
+**Last updated:** July 31, 2026
 
 This document describes how the E-HT Weight Loss Android app
 ("the app") handles your data. It is written in plain English
@@ -22,7 +22,8 @@ Nearly everything you log in the app stays on your phone. The main
 data that leaves your device is the **text you type or speak when
 describing meals** (sent to Google's Gemini API, which parses it and
 estimates calories/macros). The app also sends **crash reports** and
-any **feedback you submit** to an error-tracking service (Sentry) —
+any **feedback you submit (with a reply-to email address, so the
+developer can respond)** to an error-tracking service (Sentry) —
 crash reporting is on by default but can be turned off in Settings.
 The app never sells your data, never shows ads, never tracks you
 across apps or websites, and has no servers of its own. Uninstalling
@@ -126,20 +127,24 @@ to reach me; two of them send data to Sentry.
 
 - **"Report a bug" / "Suggest a feature"** open a short in-app
   form. When you type a message and tap send, the **message
-  text** — plus the same environment metadata as a crash report
-  (app version, Android version, device model, route) — is sent
-  to Sentry. **No name or email is collected.** These two work
-  whether or not crash reporting is enabled, because each is an
-  explicit submission you initiate.
+  text and your reply-to email address** — plus the same
+  environment metadata as a crash report (app version, Android
+  version, device model, route) — are sent to Sentry. The email
+  is required so I can reply to your report; it is used only for
+  that. These two work whether or not crash reporting is enabled,
+  because each is an explicit submission you initiate.
 - **"Open in-app feedback form"** is Sentry's own feedback
-  widget. It sends **only the free-text message you write** (plus
-  the same environment metadata) — its name and email fields are
-  turned off, so it never collects anything that identifies you.
-  This button is hidden when crash reporting is turned off.
+  widget. It sends **the free-text message you write and your
+  reply-to email address** (plus the same environment metadata).
+  Its name field is turned off. This button is hidden when crash
+  reporting is turned off.
 
-**No name or email is collected by any of these.** **Screenshots
-are never sent** either — the widget's screen-capture option is
-disabled because your screens can contain weights, body
+**Your reply-to email is the only identifying detail any of these
+collect**, it's used solely to respond to your feedback, and it's
+remembered on your device (in secure storage, never in backups)
+only so you don't have to retype it. **No name is collected, and
+screenshots are never sent** — the widget's screen-capture option
+is disabled because your screens can contain weights, body
 measurements, and other private health data.
 
 **Receiver for crash reports and both Sentry feedback paths
@@ -202,7 +207,6 @@ behavior (phone step sensor; motion-inferred sleep).
 | **Activity recognition** (`ACTIVITY_RECOGNITION`) | Reading the phone's hardware step counter. |
 | **Health Connect** (`health.READ_STEPS`, `health.READ_SLEEP`) | Pulling step and sleep data when you enable the Sleep shield. |
 | **Exact alarms** (`SCHEDULE_EXACT_ALARM`, `USE_EXACT_ALARM`) | Scheduling the optional blocking meal alarm at a specific time. |
-| **Full-screen intent** (`USE_FULL_SCREEN_INTENT`) | Showing the blocking meal alarm as a full-screen notification when it fires. |
 
 You can revoke any of these in Android Settings → Apps → E-HT
 Weight Loss → Permissions at any time. Features that depend on
