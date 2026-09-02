@@ -7,7 +7,7 @@ permalink: /privacy/
 # E-HT Weight Loss — Privacy Policy
 
 **Effective date:** May 27, 2026
-**Last updated:** July 31, 2026
+**Last updated:** September 1, 2026
 
 This document describes how the E-HT Weight Loss Android app
 ("the app") handles your data. It is written in plain English
@@ -20,8 +20,11 @@ them without legal training.
 
 Nearly everything you log in the app stays on your phone. The main
 data that leaves your device is the **text you type or speak when
-describing meals** (sent to Google's Gemini API, which parses it and
-estimates calories/macros). The app also sends **crash reports** and
+describing meals**, and, if you use photo meal logging, **the photo
+of the plate** (both sent to the AI provider you have configured,
+which identifies the food and estimates calories/macros). Progress
+photos are a different feature and never leave your phone. The app
+also sends **crash reports** and
 any **feedback you submit (with a reply-to email address, so the
 developer can respond)** to an error-tracking service (Sentry) —
 crash reporting is on by default but can be turned off in Settings.
@@ -67,31 +70,61 @@ previously-exported file via the same screen.
 There are three categories of network requests the app makes,
 the last of which can be turned off in Settings.
 
-### 1. Meal parsing — Google Gemini API
+### 1. Meal parsing — the AI provider you choose
 
 When you log a meal by voice or by typing a description, the
-**transcribed text** (never the audio) is sent to Google's
-Generative Language API to extract structured nutrition data
+**transcribed text** (never the audio) is sent to the AI provider
+you have configured, to extract structured nutrition data
 (food name, portion, calories, macros).
 
-- **Sent**: the meal description text only.
-- **Not sent**: your weight, profile, photos, or anything else.
-- **Receiver**: Google. Subject to [Google's Generative AI Terms](https://policies.google.com/terms/generative-ai)
-  and [Google Privacy Policy](https://policies.google.com/privacy).
+When you log a meal **from a photo**, the photo of the plate is
+sent as well. It goes first to a vision model, whose only job is to
+name the foods it can see, and the resulting food names are then
+priced for calories the same way typed text is. Before it is sent
+the image is downscaled to at most 1024 pixels on its long edge and
+re-encoded as JPEG. It is used for that request and the review
+screen that follows it, and is not written to the app's database or
+added to your photo gallery.
+
+- **Sent**: the meal description text, plus the meal photo if you
+  use photo logging.
+- **Not sent**: your weight, profile, progress photos, or anything
+  else. **Progress photos are a separate feature and are never
+  transmitted** to anyone.
+- **Receiver**: whichever provider you have selected in Settings.
+  The choices are Google (Generative Language API), Groq, and
+  Mistral. Google's use is subject to
+  [Google's Generative AI Terms](https://policies.google.com/terms/generative-ai)
+  and [Google Privacy Policy](https://policies.google.com/privacy);
+  [Groq](https://groq.com/privacy-policy/) and
+  [Mistral](https://mistral.ai/terms/) publish their own.
 - **API key**: by default a developer-provided trial key is used
   for the first 24 hours after install. After that you must add
-  your own Google AI Studio key in Settings — your queries then
-  go against your own quota.
+  your own key in Settings — your queries then go against your own
+  quota.
 
 A consent screen explaining this appears the first time you tap
-the microphone button; you must accept before any audio capture
-or network call happens. You can re-show the consent screen any
-time via **Settings → Voice meal logging → Reset**.
+the microphone button; you must accept before any audio capture or
+network call happens. You can re-show it any time via
+**Settings → Voice meal logging → Reset**.
 
-If you'd rather not have meal descriptions leave your device, you
-can avoid using voice and text meal logging entirely — log meals
-manually through the "Saved meals" flow instead, which performs
-no network calls.
+Photo logging has its own separate consent screen, shown the first
+time you tap the camera button and before any photo is taken or
+sent. It is deliberately not the same acceptance as the voice one,
+because the voice notice tells you the audio never leaves your
+device and photo logging is the opposite case. You can re-read it,
+or make it appear again, under
+**Settings → Meal input → Log from a photo**. On iPhone the system
+camera and photo-library prompts carry the same explanation.
+
+If you would rather it were not possible at all, photo logging can
+be switched off entirely in that same place.
+
+If you'd rather not have meal descriptions or photos leave your
+device, you can avoid voice, text and photo meal logging entirely.
+Photo logging can be switched off outright under
+**Settings → Meal input**, and you can log meals manually through
+the "Saved meals" flow, which performs no network calls.
 
 ### 2. Optional support links
 
@@ -202,7 +235,7 @@ behavior (phone step sensor; motion-inferred sleep).
 | Permission | Why the app needs it |
 |---|---|
 | **Microphone** (`RECORD_AUDIO`) | Voice meal logging. Audio is processed on-device by Android's built-in speech recognizer and converted to text. The app never sees or stores the raw audio. |
-| **Camera** | Capturing progress photos. Photos are stored only in the app's private folder. |
+| **Camera** | Two separate features. Progress photos are stored only in the app's private folder and are never transmitted. Meal photos, if you use photo meal logging, are sent to your configured AI provider to identify the food (see Section 1) and are not stored afterwards. |
 | **Notifications** (`POST_NOTIFICATIONS`) | Optional meal-logging reminders and weekly backup reminders. |
 | **Activity recognition** (`ACTIVITY_RECOGNITION`) | Reading the phone's hardware step counter. |
 | **Health Connect** (`health.READ_STEPS`, `health.READ_SLEEP`) | Pulling step and sleep data when you enable the Sleep shield. |
@@ -219,10 +252,12 @@ continue to run.
 
 - **At rest** — Data is stored in the app's private SQLite database,
   encrypted automatically by Android's file-based encryption.
-- **Credentials** — Any API keys you enter in Settings (Gemini,
-  Resend, backup email) are stored in `expo-secure-store`,
-  which uses Android's Keystore. Other apps cannot read them.
-- **In transit** — All network requests to Gemini use HTTPS.
+- **Credentials** — Any API keys you enter in Settings (Google,
+  Groq, Mistral, Resend, backup email) are stored in
+  `expo-secure-store`, which uses Android's Keystore. Other apps
+  cannot read them.
+- **In transit** — Every network request the app makes, to any AI
+  provider or to Sentry, uses HTTPS.
 - **Code obfuscation** — The shipped APK is minified and
   obfuscated with ProGuard / R8 so that on-device class names
   and string literals don't reveal internal app structure.
@@ -251,19 +286,23 @@ data, uninstall the app from that device to remove all data.
   respective screens.
 - **Revoke consent** — Settings → Voice meal logging → Reset
   re-shows the consent screen the next time you tap the
-  microphone. To stop sending data to Gemini entirely, simply
-  avoid using voice and text meal logging.
+  microphone. To stop sending anything to an AI provider, avoid
+  voice, text and photo meal logging.
 - **Opt out of optional features** — Voice meal logging, text
-  meal logging, Health Connect reads (steps and sleep), and
-  notifications are all individually optional.
-  The app remains functional with all of them disabled.
+  meal logging, photo meal logging (Settings → Meal input),
+  Health Connect reads (steps and sleep), and notifications are
+  all individually optional. The app remains functional with all
+  of them disabled.
 
 ---
 
 ## What this app does NOT do
 
-- ❌ Send your weight, body measurements, sleep, steps, photos,
-  or any health metric to any third party
+- ❌ Send your weight, body measurements, sleep, steps, progress
+  photos, or any health metric to any third party. (Meal
+  descriptions, and meal photos if you use photo logging, do go to
+  the AI provider you choose. That is Section 1 above, and it is
+  the one thing on this page that leaves your phone by design.)
 - ❌ Show advertising
 - ❌ Track you across apps or websites
 - ❌ Use cookies or device-tracking identifiers
