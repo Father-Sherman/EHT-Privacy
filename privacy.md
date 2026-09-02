@@ -98,10 +98,12 @@ added to your photo gallery.
   and [Google Privacy Policy](https://policies.google.com/privacy);
   [Groq](https://groq.com/privacy-policy/) and
   [Mistral](https://mistral.ai/terms/) publish their own.
-- **API key**: by default a developer-provided trial key is used
-  for the first 24 hours after install. After that you must add
-  your own key in Settings — your queries then go against your own
-  quota.
+- **API key**: the Play Store build includes a developer-provided
+  trial key for the first 24 hours after install, after which you
+  add your own in Settings and your queries go against your own
+  quota. The APK downloaded directly from the project page includes
+  no key at all, so meal logging there needs one of yours from the
+  start. Either way, once you add a key it is the only one used.
 
 A consent screen explaining this appears the first time you tap
 the microphone button; you must accept before any audio capture or
