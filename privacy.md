@@ -98,12 +98,14 @@ added to your photo gallery.
   and [Google Privacy Policy](https://policies.google.com/privacy);
   [Groq](https://groq.com/privacy-policy/) and
   [Mistral](https://mistral.ai/terms/) publish their own.
-- **API key**: the Play Store build includes a developer-provided
-  trial key for the first 24 hours after install, after which you
-  add your own in Settings and your queries go against your own
-  quota. The APK downloaded directly from the project page includes
-  no key at all, so meal logging there needs one of yours from the
-  start. Either way, once you add a key it is the only one used.
+- **API key**: you supply your own, and it is the only one used. No
+  build ships with a key in it. Earlier versions included a
+  developer-provided key that gave you 24 hours before you had to add
+  your own; that was withdrawn in September 2026, because a key inside
+  an app can be read out of the file by anyone who has the file.
+  Meal logging asks you for a key the first time you use it and tells
+  you where to get a free one; everything that does not need AI works
+  without one.
 
 A consent screen explaining this appears the first time you tap
 the microphone button; you must accept before any audio capture or

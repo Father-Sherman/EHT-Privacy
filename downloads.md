@@ -9,7 +9,7 @@ permalink: /downloads/
 ## Android
 
 **[Download the APK](https://github.com/Father-Sherman/eht-privacy/releases/latest/download/eht-weight-loss.apk)**
-&nbsp;&nbsp;<small>currently v1.99.5</small>
+&nbsp;&nbsp;<small>currently v1.99.6</small>
 
 <!-- The asset filename is deliberately unversioned. A "latest"
      download URL has to name the file exactly, so a versioned
@@ -36,10 +36,10 @@ needed again unless you update the same way.
 
 ### You need your own AI key
 
-This download **does not include an API key**, deliberately. A key
-baked into an APK is sitting in the file in plaintext, and anyone who
-downloads a public APK can read it out in seconds, so shipping one
-here would mean handing my key to the internet.
+**No build includes an API key**, deliberately. A key baked into an app
+sits in the file in plaintext, and anyone with the file can read it out
+in seconds, so shipping one would mean handing my key to whoever wanted
+it.
 
 So the first thing to do after installing is add your own. It is free:
 
@@ -54,9 +54,11 @@ Until a key is in, everything that does not need AI still works:
 weight, steps, workouts, measurements, sleep, the charts and the
 streak. Only reading a meal from text, voice or a photo needs one.
 
-The Play Store build behaves differently here: it includes a
-developer key for the first 24 hours so you can try it before
-signing up for anything.
+The Play Store build works the same way. It used to include a
+developer key for the first 24 hours so you could try things before
+signing up for anything, but that was withdrawn in September 2026:
+a key shipped inside an app can be read out of the file by anyone who
+has the file, which is not a thing you can fix by asking nicely.
 
 ## iPhone
 
