@@ -7,5 +7,6 @@ title: E-HT Weight Loss
 
 A personal Android weight-loss app built by Brad Sherman.
 
+- **[Download](./downloads/)** — the Android APK, and where the iPhone build stands.
 - **[Privacy Policy](./privacy/)** — what data the app uses, where it goes, and how to delete it.
 - **Contact**: [externalhypothalamus@gmail.com](mailto:externalhypothalamus@gmail.com)

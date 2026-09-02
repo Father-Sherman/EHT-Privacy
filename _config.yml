@@ -1,5 +1,5 @@
 title: "E-HT Weight Loss"
-description: "Privacy policy for the E-HT Weight Loss Android app."
+description: "Downloads and privacy policy for the E-HT Weight Loss app."
 theme: jekyll-theme-cayman
 
 # Keeps the Jekyll site index clean — only the two .md files in
@@ -8,3 +8,4 @@ theme: jekyll-theme-cayman
 include:
   - privacy.md
   - index.md
+  - downloads.md
