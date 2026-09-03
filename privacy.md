@@ -7,7 +7,7 @@ permalink: /privacy/
 # E-HT Weight Loss — Privacy Policy
 
 **Effective date:** May 27, 2026
-**Last updated:** September 1, 2026
+**Last updated:** September 3, 2026
 
 This document describes how the E-HT Weight Loss Android app
 ("the app") handles your data. It is written in plain English
@@ -24,7 +24,7 @@ describing meals**, and, if you use photo meal logging, **the photo
 of the plate** (both sent to the AI provider you have configured,
 which identifies the food and estimates calories/macros). Progress
 photos are a different feature and never leave your phone. The app
-also sends **crash reports** and
+also sends **crash and diagnostic reports** and
 any **feedback you submit (with a reply-to email address, so the
 developer can respond)** to an error-tracking service (Sentry) —
 crash reporting is on by default but can be turned off in Settings.
@@ -130,6 +130,19 @@ Photo logging can be switched off outright under
 **Settings → Meal input**, and you can log meals manually through
 the "Saved meals" flow, which performs no network calls.
 
+One thing that is not meal logging, for completeness. If you have
+saved a key, the app asks that provider **which models it currently
+offers**, at most once a day. This is how it notices that a provider
+has retired a model the app still lists — that has happened more than
+once, and in one case photo logging stopped working on a provider for
+a month before anyone spotted it. The request carries nothing but the
+key itself, for authentication: no meal text, no photo, no profile
+data, nothing from your local database. It runs only while crash
+reporting is enabled (Section 3), because its only purpose is to tell
+the developer that something needs fixing — so switching that off in
+**Settings → Privacy & data** stops it, and removing your key stops it
+too.
+
 ### 2. Optional support links
 
 The "Support development" buttons in Settings open the system
@@ -143,8 +156,10 @@ of those services:
 
 ### 3. Crash reports and in-app feedback — Sentry (opt-out)
 
-The app sends two kinds of data to [Sentry](https://sentry.io),
-both gated by a single toggle:
+The app sends three kinds of data to [Sentry](https://sentry.io).
+The two automatic kinds are governed by the crash-reporting toggle in
+**Settings → Privacy & data**. The feedback forms are submissions you
+initiate yourself, and are described separately below.
 
 **Automatic crash reports.** If the app encounters an unhandled
 error (a "crash"), it sends a report so I can see that something
@@ -158,6 +173,19 @@ broke and fix it.
   API keys, or anything else from your local data. The SDK is
   configured with `sendDefaultPii: false` and user-input
   breadcrumbs are dropped before transmission.
+
+**Automatic AI-model reports.** When an AI provider refuses a
+model the app asked for — usually because the provider has retired
+it — the app reports that, so it can be corrected rather than
+falling back to a slower model forever. Governed by the same
+toggle as crash reports.
+
+- **Sent**: which provider (Google, Groq or Mistral), the name of
+  the model, and the provider's own error message about that
+  model, plus the same environment metadata as a crash report.
+- **Not sent**: your API key, the request URL (Google's carries
+  the key in it), your meal text or photo, or anything else from
+  your local data.
 
 **Voluntary feedback.** Settings → Feedback offers three ways
 to reach me; two of them send data to Sentry.
