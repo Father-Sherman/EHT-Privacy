@@ -7,7 +7,7 @@ permalink: /privacy/
 # E-HT Weight Loss — Privacy Policy
 
 **Effective date:** May 27, 2026
-**Last updated:** September 3, 2026
+**Last updated:** September 4, 2026
 
 This document describes how the E-HT Weight Loss Android app
 ("the app") handles your data. It is written in plain English
@@ -142,6 +142,14 @@ reporting is enabled (Section 3), because its only purpose is to tell
 the developer that something needs fixing — so switching that off in
 **Settings → Privacy & data** stops it, and removing your key stops it
 too.
+
+There is also a button you can press yourself: **Settings → AI
+features → Test AI connection**. It asks each provider you have a key
+for to estimate the calories in "one large egg" and shows you what
+came back, so you can tell which provider is at fault when logging
+stops working. It sends that fixed phrase and your key, and nothing
+else — no meal text, no photo, no profile data, nothing from your
+local database. It runs only when you tap the button.
 
 ### 2. Optional support links
 
